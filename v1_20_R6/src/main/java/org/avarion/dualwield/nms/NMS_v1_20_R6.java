@@ -16,10 +16,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_20_R6.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R6.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_20_R6.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_20_R6.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_20_R4.CraftWorld;  // Correct R4! 1.20.6 has R4 as API version!!
+import org.bukkit.craftbukkit.v1_20_R4.entity.CraftEntity;  // Correct R4! 1.20.6 has R4 as API version!!
+import org.bukkit.craftbukkit.v1_20_R4.entity.CraftPlayer;  // Correct R4! 1.20.6 has R4 as API version!!
+import org.bukkit.craftbukkit.v1_20_R4.inventory.CraftItemStack;  // Correct R4! 1.20.6 has R4 as API version!!
 import org.bukkit.entity.Player;
 
 import java.util.UUID;

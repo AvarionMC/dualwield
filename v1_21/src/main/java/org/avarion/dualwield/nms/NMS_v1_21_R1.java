@@ -16,15 +16,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_21.CraftWorld;
-import org.bukkit.craftbukkit.v1_21.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_21.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_21.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_21_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-public final class NMS_v1_21 implements NMS {
+public final class NMS_v1_21_R1 implements NMS {
     @Override
     public void handAnimation(Player player, org.bukkit.inventory.EquipmentSlot equipmentSlot) {
         switch (equipmentSlot) {
