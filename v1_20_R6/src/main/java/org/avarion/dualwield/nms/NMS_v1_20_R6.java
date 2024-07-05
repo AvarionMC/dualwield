@@ -16,10 +16,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 import org.bukkit.Sound;
-import org.bukkit.craftbukkit.v1_20_R4.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R4.entity.CraftEntity;
-import org.bukkit.craftbukkit.v1_20_R4.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_20_R4.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_20_R6.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R6.entity.CraftEntity;
+import org.bukkit.craftbukkit.v1_20_R6.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R6.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -83,7 +83,7 @@ public final class NMS_v1_20_R6 implements NMS {
                     .getAttributeModifiers(EquipmentSlot.MAINHAND);
             AttributeModifier attributeModifier = Iterables.getFirst(attributeMultimap.get(attribute), null);
 
-            return attributeModifier != null ? attributeModifier.getAmount() : 0;
+            return attributeModifier != null ? attributeModifier.amount : 0;
         }
 
         return 0;
