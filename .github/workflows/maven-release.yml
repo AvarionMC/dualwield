@@ -63,11 +63,11 @@ jobs:
         run: python .github/scripts/build_remapped_jars.py
 
       - name: Deploy the jar file
-        run: mvn --batch-mode -Drevision=${CURRENT_VERSION} clean deploy
+        run: mvn -Drevision=${CURRENT_VERSION} clean package
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Add jar file to release
-        run: gh release upload "${TAG}" "target/dualwield-${CURRENT_VERSION}.jar" --clobber
+        run: gh release upload "${TAG}" "target/DualWield-${CURRENT_VERSION}.jar" --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
