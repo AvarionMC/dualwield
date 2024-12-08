@@ -11,6 +11,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      packages: write
+
     steps:
       - uses: actions/checkout@v4
 
@@ -46,6 +50,7 @@ jobs:
             8
             16
             17
+            21
 
       - name: Set up Python
         uses: actions/setup-python@v5

@@ -30,6 +30,7 @@
     <modules>
         <module>core</module>
         <module>dist</module>
+        <module>v1_20_R6</module>
         <module>v1_20_R4</module>
         <module>v1_20_R2</module>
         <module>v1_20_R1</module>

@@ -11,4 +11,12 @@ tmp/
 *.iws
 log*.txt
 *.log
+
+# Buildtools related stuff
 BuildTools.log.txt
+.cache/
+apache-maven-*/
+BuildData/
+CraftBukkit/
+Spigot/
+spigot-*.jar
