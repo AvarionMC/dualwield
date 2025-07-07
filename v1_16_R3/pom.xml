@@ -5,7 +5,7 @@
     <artifactId>dualwield-v1_16_R3</artifactId>
 
     <properties>
-        <spigot.version>1.16.5-R0.1-SNAPSHOT</spigot.version>
+        <spigot.version>1.17-R0.1</spigot.version>
     </properties>
 
     <parent>
