@@ -3,7 +3,30 @@
 You'll need these versions to compile the server jars:
 # Java 8: 1.9 -> 1.16
 # Java 16: 1.17
-# Java 17: 1.18+
+# Java 17: 1.18 - 1.20.4
+# Java 21: 1.20.5 - 1.21.1
+==> https://hub.spigotmc.org/versions/1.21.1.json
+
+Java Versions:
+    public static final JavaVersion JAVA_5 = new JavaVersion( "Java 5", 49 );
+    public static final JavaVersion JAVA_6 = new JavaVersion( "Java 6", 50 );
+    public static final JavaVersion JAVA_7 = new JavaVersion( "Java 7", 51 );
+    public static final JavaVersion JAVA_8 = new JavaVersion( "Java 8", 52 );
+    public static final JavaVersion JAVA_9 = new JavaVersion( "Java 9", 53 );
+    public static final JavaVersion JAVA_10 = new JavaVersion( "Java 10", 54 );
+    public static final JavaVersion JAVA_11 = new JavaVersion( "Java 11", 55 );
+    public static final JavaVersion JAVA_12 = new JavaVersion( "Java 12", 56 );
+    public static final JavaVersion JAVA_13 = new JavaVersion( "Java 13", 57 );
+    public static final JavaVersion JAVA_14 = new JavaVersion( "Java 14", 58 );
+    public static final JavaVersion JAVA_15 = new JavaVersion( "Java 15", 59 );
+    public static final JavaVersion JAVA_16 = new JavaVersion( "Java 16", 60 );
+    public static final JavaVersion JAVA_17 = new JavaVersion( "Java 17", 61 );
+    public static final JavaVersion JAVA_18 = new JavaVersion( "Java 18", 62 );
+    public static final JavaVersion JAVA_19 = new JavaVersion( "Java 19", 63 );
+    public static final JavaVersion JAVA_20 = new JavaVersion( "Java 20", 64 );
+    public static final JavaVersion JAVA_21 = new JavaVersion( "Java 21", 65 );
+    public static final JavaVersion JAVA_22 = new JavaVersion( "Java 22", 66 );
+
 """
 import logging
 import os
