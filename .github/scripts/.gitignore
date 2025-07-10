@@ -1,0 +1,10 @@
+.cache/
+BuildData/
+Bukkit/
+CraftBukkit/
+Spigot/
+work/
+*.txt
+*.jar
+apache-maven-3.9.6/
+
