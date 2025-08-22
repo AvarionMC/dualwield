@@ -39,7 +39,7 @@ jobs:
           echo "PRE_PIP_HASH=$pip_hash" >> $GITHUB_ENV
 
       - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'adopt'
           java-version: |
