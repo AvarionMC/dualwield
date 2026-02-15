@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Restore .m2 repository packages from cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.m2
           key: m2-cache-${{ github.run_id }}
@@ -27,7 +27,7 @@ jobs:
           echo "PRE_CACHE_HASH=$jar_hash" >> $GITHUB_ENV
 
       - name: Restore pip package cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.cache/pip
           key: pip-cache-${{ github.run_id }}
@@ -73,14 +73,14 @@ jobs:
 
       - name: Save .m2 repository packages to cache
         if: env.PRE_CACHE_HASH != env.POST_CACHE_HASH
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ~/.m2
           key: m2-cache-${{ github.run_id }}
 
       - name: Save pip packages to cache
         if: env.PRE_PIP_HASH != env.POST_PIP_HASH
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ~/.cache/pip
           key: pip-cache-${{ github.run_id }}
