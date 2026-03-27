@@ -3,7 +3,30 @@
 You'll need these versions to compile the server jars:
 # Java 8: 1.9 -> 1.16
 # Java 16: 1.17
-# Java 17: 1.18+
+# Java 17: 1.18 - 1.20.4
+# Java 21: 1.20.5 - 1.21.1
+==> https://hub.spigotmc.org/versions/1.21.1.json
+
+Java Versions:
+    public static final JavaVersion JAVA_5 = new JavaVersion( "Java 5", 49 );
+    public static final JavaVersion JAVA_6 = new JavaVersion( "Java 6", 50 );
+    public static final JavaVersion JAVA_7 = new JavaVersion( "Java 7", 51 );
+    public static final JavaVersion JAVA_8 = new JavaVersion( "Java 8", 52 );
+    public static final JavaVersion JAVA_9 = new JavaVersion( "Java 9", 53 );
+    public static final JavaVersion JAVA_10 = new JavaVersion( "Java 10", 54 );
+    public static final JavaVersion JAVA_11 = new JavaVersion( "Java 11", 55 );
+    public static final JavaVersion JAVA_12 = new JavaVersion( "Java 12", 56 );
+    public static final JavaVersion JAVA_13 = new JavaVersion( "Java 13", 57 );
+    public static final JavaVersion JAVA_14 = new JavaVersion( "Java 14", 58 );
+    public static final JavaVersion JAVA_15 = new JavaVersion( "Java 15", 59 );
+    public static final JavaVersion JAVA_16 = new JavaVersion( "Java 16", 60 );
+    public static final JavaVersion JAVA_17 = new JavaVersion( "Java 17", 61 );
+    public static final JavaVersion JAVA_18 = new JavaVersion( "Java 18", 62 );
+    public static final JavaVersion JAVA_19 = new JavaVersion( "Java 19", 63 );
+    public static final JavaVersion JAVA_20 = new JavaVersion( "Java 20", 64 );
+    public static final JavaVersion JAVA_21 = new JavaVersion( "Java 21", 65 );
+    public static final JavaVersion JAVA_22 = new JavaVersion( "Java 22", 66 );
+
 """
 import logging
 import os
@@ -18,18 +41,55 @@ logging.basicConfig(format="[%(asctime)s] [%(levelname)s] %(message)s", level=lo
 logger = logging.getLogger(__name__)
 
 java_versions_needed = {
-    '9': 8,
-    '10': 8,
-    '11': 8,
-    '12': 8,
-    '13': 8,
-    '14': 8,
-    '15': 8,
-    '16': 8,
-    '17': 16,
-    '18': 17,
-    '19': 17,
-    '20': 17,
+    "1.8": (7, 8),
+    "1.8.3": (7, 8),
+    "1.8.4": (7, 8),
+    "1.8.5": (7, 8),
+    "1.8.6": (7, 8),
+    "1.8.7": (7, 8),
+    "1.8.8": (7, 8),
+    "1.9": (7, 8),
+    "1.9.2": (7, 8),
+    "1.9.4": (7, 8),
+    "1.10": (7, 8),
+    "1.10.2": (7, 8),
+    "1.11": (7, 8),
+    "1.11.1": (7, 8),
+    "1.11.2": (7, 8),
+    "1.12": (8, 8),
+    "1.12.1": (8, 9),
+    "1.12.2": (8, 10),
+    "1.13": (8, 11),
+    "1.13.1": (8, 11),
+    "1.13.2": (8, 12),
+    "1.14": (8, 12),
+    "1.14.1": (8, 12),
+    "1.14.2": (8, 12),
+    "1.14.3": (8, 12),
+    "1.14.4": (8, 13),
+    "1.15": (8, 13),
+    "1.15.1": (8, 13),
+    "1.15.2": (8, 14),
+    "1.16.1": (8, 14),
+    "1.16.2": (8, 14),
+    "1.16.3": (8, 15),
+    "1.16.4": (8, 15),
+    "1.16.5": (8, 16),
+    "1.17": (16, 16),
+    "1.17.1": (16, 17),
+    "1.18": (17, 17),
+    "1.18.1": (17, 17),
+    "1.18.2": (17, 18),
+    "1.19": (17, 18),
+    "1.19.1": (17, 18),
+    "1.19.2": (17, 19),
+    "1.19.3": (17, 20),
+    "1.19.4": (17, 20),
+    "1.20": (17, 21),
+    "1.20.1": (17, 21),
+    "1.20.2": (17, 21),
+    "1.20.4": (17, 22),
+    "1.20.6": (21, 22),
 }
 __dir__ = Path(__file__).parent.resolve().absolute()
 __root__ = __dir__.parent.parent
@@ -42,14 +102,27 @@ def find_version_to_build(directory: Path) -> tuple[str, str]:
 
 
 def get_java_path(version: str) -> str:
-    minor = version.split('.')[1]
-    java_version = java_versions_needed[minor]
+    versions = version.split('.')
+    min_java, max_java = -1, -1
 
-    java_path = os.getenv(f'JAVA_HOME_{java_version}_X64')
-    if not java_path:
-        raise Exception(f"No JAVA_HOME found for version {version}")
+    for version_needed in [version, ".".join(versions[:3]), ".".join(versions[:2]), versions[1]]:
+        if version_needed not in java_versions_needed:
+            continue
 
-    return java_path + '/bin/java'
+        min_java, max_java = java_versions_needed[version_needed]
+
+        for java_version in range(min_java, max_java + 1):
+            java_path = os.getenv(f'JAVA_HOME_{java_version}_X64')
+            if java_path:
+                return java_path + '/bin/java'
+
+            alternative = Path(f"/usr/lib/jvm/java-{java_version}-openjdk-amd64/bin/java")
+            if alternative.exists():
+                return str(alternative)
+
+        break  # First one should stop the loop for searching!
+
+    raise Exception(f"No JAVA_HOME found for version {version}, I need something between '{min_java}' and '{max_java}'")
 
 
 def run_build_tools(version: str, spigot_needed: str) -> None:
