@@ -1,0 +1,30 @@
+name: Java
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+permissions:
+  contents: read
+
+jobs:
+  java:
+    uses: svaningelgem/ci-workflows/.github/workflows/java.yml@v1
+    with:
+      java-version: |
+        8
+        16
+        17
+      paths: |
+        **/*.java
+        **/pom.xml
+        **/src/main/**
+        **/src/test/**
+        .github/**
+        requirements.txt
+      setup: uv run --no-project --with-requirements requirements.txt python .github/scripts/build_remapped_jars.py
