@@ -67,10 +67,14 @@ def run_build_tools(version: str, spigot_needed: str) -> None:
         version
     ]
 
-    with open(__dir__ / f"log.{version}.txt", "w") as file:
+    log = __dir__ / f"log.{version}.txt"
+    with open(log, "w") as file:
         logger.info(f" > .. building")
-        subprocess.run(command, stdout=file, stderr=subprocess.STDOUT, check=True)
-        logger.info(f" > .. finished")
+        result = subprocess.run(command, stdout=file, stderr=subprocess.STDOUT)
+    if result.returncode:
+        print(log.read_text()[-5000:])
+        raise SystemExit(f"BuildTools failed for {version}")
+    logger.info(f" > .. finished")
 
 
 def prepare_build_tools():
